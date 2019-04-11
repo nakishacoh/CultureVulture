@@ -29,12 +29,12 @@
 // "full"	sets stage to window size with no scaling
 // "tagID"	add canvas to HTML tag of ID - set to dimensions if provided - no scaling
 
-var scaling = "full"; // this will resize to fit inside the screen dimensions
-// var width = 1024;
-// var height = 768;
+var scaling = "fit"; // this will resize to fit inside the screen dimensions
+var width = 1024;
+var height = 768;
 var color = light; // ZIM colors like green, blue, pink, faint, clear, etc.
 var outerColor = dark; // any HTML colors like "violet", "#333", etc. are fine to use
-var assets = ["stage.jpg"];
+var assets = ["awardBackdrop.jpg", "shakira1.png", "shakira2.png", "shakira1.mp3","shakira2.mp3", "beyonce1.png", "beyonce2.png","beyonce1.mp3","beyonce2.mp3", "arianag1.png","arianag2.png","ariana1.mp3","ariana2.mp3"];
 var path = "assets/";
 
 var frame = new Frame(scaling, width, height, color, outerColor, assets, path, new Waiter());
@@ -45,13 +45,16 @@ frame.on("ready", function() {
     var stageW = frame.width;
     var stageH = frame.height;
 
-    // var main = new Container(stageW, stageH).addTo();
-    // frame.asset("stage.jpg").addTo(main).center();
-    // pizzazz.listIcons();
+    var main = new Container(stageW, stageH).addTo();
+    frame.asset("awardBackdrop.jpg").center(main);
+    pizzazz.listIcons();
 
-    const m = app.makeModel();
-    const v = app.makeView(m, stage);
-    const c = app.makeController(m, v, stage);
+    var shakira = frame.asset("shakira1.png").addTo(main).sca(.5).mov(100,280);
+    shakira.on("mousedown", function(){
+      frame.asset("shakira1.mp3").play();
+      frame.asset("shakira2.png");
+    });
+
 
     stage.update(); // this is needed to show any changes
 
