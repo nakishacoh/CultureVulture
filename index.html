@@ -17,7 +17,8 @@
 <script src="https://d309knd7es5f10.cloudfront.net/pizzazz_02.js"></script>
 
 <script src="scripts/view.js"></script>
-<!-- <script src="scripts/controller.js"></script> -->
+<script src="scripts/controlPage.js"></script>
+<script src="scripts/model2.js"></script>
 
 <script>
 
@@ -29,8 +30,8 @@
 // "tagID"	add canvas to HTML tag of ID - set to dimensions if provided - no scaling
 
 var scaling = "full"; // this will resize to fit inside the screen dimensions
-var width = 1024;
-var height = 768;
+// var width = 1024;
+// var height = 768;
 var color = light; // ZIM colors like green, blue, pink, faint, clear, etc.
 var outerColor = dark; // any HTML colors like "violet", "#333", etc. are fine to use
 var assets = ["stage.jpg"];
@@ -44,13 +45,13 @@ frame.on("ready", function() {
     var stageW = frame.width;
     var stageH = frame.height;
 
-    var main = new Container(stageW, stageH).addTo();
-    frame.asset("stage.jpg").addTo(main).center();
+    // var main = new Container(stageW, stageH).addTo();
+    // frame.asset("stage.jpg").addTo(main).center();
     // pizzazz.listIcons();
 
-    // const m = app.makeModel();
-    // const v = app.makeView(m, stage);
-    // const c = app.makeController(m, v, stage);
+    const m = app.makeModel();
+    const v = app.makeView(m, stage);
+    const c = app.makeController(m, v, stage);
 
     stage.update(); // this is needed to show any changes
 
