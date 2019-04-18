@@ -29,7 +29,7 @@
 // "full"	sets stage to window size with no scaling
 // "tagID"	add canvas to HTML tag of ID - set to dimensions if provided - no scaling
 
-var scaling = "fit"; // this will resize to fit inside the screen dimensions
+var scaling = "full"; // this will resize to fit inside the screen dimensions
 var width = 1024;
 var height = 768;
 var color = light; // ZIM colors like green, blue, pink, faint, clear, etc.
@@ -48,33 +48,41 @@ frame.on("ready", function() {
     // var intro = new Container(stageW, stageH).addTo();
     // frame.asset("logoCV.png").addTo(intro).sca(.5);
 
+    var background = frame.asset("awardBackdrop.jpg").alp(0);
 
     intro()
     function intro(){
-      // frame.asset("logoCV.png").addTo(intro).sca(.5);
+      frame.asset("logoCV.png").addTo(intro).sca(.5);
+      var background = frame.asset("awardBackdrop.jpg");
+
       var intro = new Container(stageW, stageH).addTo();
       var logo = frame.asset("logoCV.png").addTo(intro).sca(.5);
         var startBtn= new Button({
             width:300,
             label:"Let's Play"
 
-            }).center()
+          }).center(intro)
 
             startBtn.on("click",function(){
-                startBtn.removeFrom()
-                logo.removeFrom()
-
-                    playGame()
+                intro.removeFrom();
+                logo.removeFrom();
+                // startNtn.removeFrom();
+                background.alp(1);
+                    playGame();
 
             })
+          stage.update();
     }
 
   function playGame(){
-    frame.asset("awardBackdrop.jpg").center(main);
-    pizzazz.listIcons();
+    background.scaleTo(stage, 100).center(main).pos(0, 0, false, true);
+    background.addTo(main);
+    // pizzazz.listIcons();
+    // var background = frame.asset("awardBackdrop.jpg").alp(0).addTo(main);
+
 
     // Add songs
-    // zog(shakHips.duration);
+    zog(shakHips.duration);
     var shakHips = frame.asset("shakira2.mp3").play();
     shakHips.paused = true;
 
@@ -91,7 +99,7 @@ frame.on("ready", function() {
     var grande2 = frame.asset("ariaan2.mp3").play();
     grande2.paused = true;
 
-    //add images
+//     //add images
     var shakira = frame.asset("shakira1.png").addTo(main).sca(.5).mov(100,280);
     var shakira2 = frame.asset("shakira2.png").sca(.8).mov(-320,280);
 
@@ -101,9 +109,9 @@ frame.on("ready", function() {
     var ariana = frame.asset("arianag1.png").addTo(main).sca(.2).mov(700,290);
     var ariana2 = frame.asset("arianag2.png").sca(.3).mov(220,130);
 
-
-
-    // shakira Toggle
+//
+//
+//     // shakira Toggle
     shakira.on("click", function(){
       zog("click");
       shakHips.play();
@@ -149,7 +157,7 @@ frame.on("ready", function() {
       }
     });
 
-    //Beyonce
+//     //Beyonce
     beyonce.on("click", function(){
       zog("click");
       yonce.play();
@@ -173,7 +181,7 @@ frame.on("ready", function() {
         frame.asset("beyonce2.png").addTo(main);
       }
     });
-
+//
     beyonce2.on("click", function(){
         yonce2.play();
       if (beyonce2.toggled){
@@ -242,7 +250,15 @@ frame.on("ready", function() {
     });
 }
 
+frame.on("resize", () => {
+    stage = frame.stage;
+    stageW = frame.width;
+    stageH = frame.height;
+    background.scaleTo(stage, 100).addTo(stage).pos({x:0,y:0,bottom:true}).bot();
+    zog("background");
 
+    stage.update();
+});
 
 
     stage.update(); // this is needed to show any changes
