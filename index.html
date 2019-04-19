@@ -50,6 +50,23 @@ frame.on("ready", function() {
 
     var background = frame.asset("awardBackdrop.jpg").alp(0);
 
+    // Songs
+    var shakHips = frame.asset("shakira2.mp3").play();
+    shakHips.paused = true;
+    var shakForget = frame.asset("shakira1.mp3").play();
+    shakForget.paused = true;
+
+    var yonce = frame.asset("beyonce1.mp3").play();
+    yonce.paused = true;
+    var yonce2 = frame.asset("beyonce2.mp3").play();
+    yonce2.paused = true;
+
+    var grande = frame.asset("ariana1.mp3").play();
+    grande.paused = true;
+    var grande2 = frame.asset("ariaan2.mp3").play();
+    grande2.paused = true;
+
+
     intro()
     function intro(){
       frame.asset("logoCV.png").addTo(intro).sca(.5);
@@ -80,26 +97,7 @@ frame.on("ready", function() {
     // pizzazz.listIcons();
     // var background = frame.asset("awardBackdrop.jpg").alp(0).addTo(main);
 
-
-    // Add songs
-    zog(shakHips.duration);
-    var shakHips = frame.asset("shakira2.mp3").play();
-    shakHips.paused = true;
-
-    var shakForget = frame.asset("shakira1.mp3").play();
-    shakForget.paused = true;
-
-    var yonce = frame.asset("beyonce1.mp3").play();
-    yonce.paused = true;
-    var yonce2 = frame.asset("beyonce2.mp3").play();
-    yonce2.paused = true;
-
-    var grande = frame.asset("ariana1.mp3").play();
-    grande.paused = true;
-    var grande2 = frame.asset("ariaan2.mp3").play();
-    grande2.paused = true;
-
-//     //add images
+    //add images
     var shakira = frame.asset("shakira1.png").addTo(main).sca(.5).mov(100,280);
     var shakira2 = frame.asset("shakira2.png").sca(.8).mov(-320,280);
 
@@ -256,6 +254,14 @@ frame.on("resize", () => {
     stageH = frame.height;
     background.scaleTo(stage, 100).addTo(stage).pos({x:0,y:0,bottom:true}).bot();
     zog("background");
+    shakira.scaleTo(stage).addTo(stage);
+    shakira2.scaleTo(stage).addTo(stage);
+
+    beyonce.scaleTo(stage).addTo(stage);
+    beyonce2.scaleTo(stage).addTo(stage);
+
+    ariana.scaleTo(stage).addTo(stage);
+    ariana2.scaleTo(stage).addTo(stage);
 
     stage.update();
 });
