@@ -63,17 +63,28 @@ frame.on("ready", function() {
 
     var grande = frame.asset("ariana1.mp3").play();
     grande.paused = true;
-    var grande2 = frame.asset("ariaan2.mp3").play();
+
+    var grande2 = frame.asset("ariana2.mp3").play();
     grande2.paused = true;
+
+    //add images
+    // var shakira = frame.asset("shakira1.png");
+    // var shakira2 = frame.asset("shakira2.png");
+
+    // var beyonce = frame.asset("beyonce1.png");
+    // var beyonce2 = frame.asset("beyonce2.png");
+
+    // var ariana = frame.asset("arianag1.png");
+    // var ariana2 = frame.asset("arianag2.png");
 
 
     intro()
     function intro(){
-      frame.asset("logoCV.png").addTo(intro).sca(.5);
+      var logo = frame.asset("logoCV.png").addTo(intro).sca(.5);
       var background = frame.asset("awardBackdrop.jpg");
 
       var intro = new Container(stageW, stageH).addTo();
-      var logo = frame.asset("logoCV.png").addTo(intro).sca(.5);
+
         var startBtn= new Button({
             width:300,
             label:"Let's Play"
@@ -97,15 +108,17 @@ frame.on("ready", function() {
     // pizzazz.listIcons();
     // var background = frame.asset("awardBackdrop.jpg").alp(0).addTo(main);
 
+
+
     //add images
-    var shakira = frame.asset("shakira1.png").addTo(main).sca(.5).mov(100,280);
-    var shakira2 = frame.asset("shakira2.png").sca(.8).mov(-320,280);
+    var shakira = frame.asset("shakira1.png").addTo(main).sca(.5).mov(170,190);
+    var shakira2 = frame.asset("shakira2.png").sca(.7).mov(-160,220);
 
-    var beyonce = frame.asset("beyonce1.png").addTo(main).sca(.4).mov(350,265);
-    var beyonce2 = frame.asset("beyonce2.png").sca(.3).mov(280,130);
+    var beyonce = frame.asset("beyonce1.png").addTo(main).sca(.4).mov(480,180);
+    var beyonce2 = frame.asset("beyonce2.png").sca(.3).mov(380,40);
 
-    var ariana = frame.asset("arianag1.png").addTo(main).sca(.2).mov(700,290);
-    var ariana2 = frame.asset("arianag2.png").sca(.3).mov(220,130);
+    var ariana = frame.asset("arianag1.png").addTo(main).sca(.2).mov(850,210);
+    var ariana2 = frame.asset("arianag2.png").sca(.7).mov(720,160);
 
 //
 //
@@ -187,10 +200,10 @@ frame.on("ready", function() {
 
         yonce2.paused = false;
 
-        if(yonce2.position >= shakForget.duration){
-          shakForget.position = 0;
-          // shakForget.play();
-        }
+        // if(yonce2.position >= shakForget.duration){
+        //   shakForget.position = 0;
+        //   // shakForget.play();
+        // }
 
       } else {
         yonce.paused = false;
@@ -221,8 +234,8 @@ frame.on("ready", function() {
         grande2.paused = false;
         grande.paused = true;
 
-        frame.asset("ariana1.png").removeFrom(main);
-        frame.asset("ariana2.png").addTo(main);
+        ariana.removeFrom(main);
+        ariana2.addTo(main);
       }
     });
 
@@ -242,30 +255,35 @@ frame.on("ready", function() {
         grande.paused = false;
         grande2.paused = true;
 
-        frame.asset("ariana2.png").removeFrom(main);
-        frame.asset("ariana1.png").addTo(main);
+        ariana2.removeFrom(main);
+        ariana.addTo(main);
       }
     });
+
+
+  frame.on("resize", () => {
+      stage = frame.stage;
+      stageW = frame.width;
+      stageH = frame.height;
+      background.scaleTo(stage, 100).addTo(stage).pos({x:0,y:0,bottom:true}).bot();
+      zog("background");
+
+      // Shakira
+      shakira.scaleTo(stage,stageW*.05, stageH*0.07).pos(stageW*.13, stageH*0.01, false, true).addTo(stage);
+      shakira2.scaleTo(stage,stageW*.05, stageH*.07).pos(stageW *-.10, stageH*0.01, false, true).addTo(stage);
+      zog("Shakira-responsive");
+
+      // Beyonce
+      beyonce.scaleTo(stage,stageW*.05, stageH*0.07).pos(stageW*.4, stageH*0.01, false, true).addTo(stage);
+      beyonce2.scaleTo(stage,stageW*.5, stageH*.11).pos(stageW *.35, stageH*-0.04, false, true).addTo(stage);
+
+      // Beyonce
+      ariana.scaleTo(stage,stageW*.05, stageH*0.07).pos(stageW*.7, stageH*0.01, false, true).addTo(stage);
+      ariana2.scaleTo(stage,stageW*.5, stageH*.075).pos(stageW *.6, stageH*-0.01, false, true).addTo(stage);
+
+      stage.update();
+  });
 }
-
-frame.on("resize", () => {
-    stage = frame.stage;
-    stageW = frame.width;
-    stageH = frame.height;
-    background.scaleTo(stage, 100).addTo(stage).pos({x:0,y:0,bottom:true}).bot();
-    zog("background");
-    shakira.scaleTo(stage).addTo(stage);
-    shakira2.scaleTo(stage).addTo(stage);
-
-    beyonce.scaleTo(stage).addTo(stage);
-    beyonce2.scaleTo(stage).addTo(stage);
-
-    ariana.scaleTo(stage).addTo(stage);
-    ariana2.scaleTo(stage).addTo(stage);
-
-    stage.update();
-});
-
 
     stage.update(); // this is needed to show any changes
 
